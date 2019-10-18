@@ -1,0 +1,17 @@
+type Query {
+    imagesearch(oclc: [String]!): GoogleImageResult
+    isbnImageSearch(isbn: [String]!) : GoogleImageResult
+}
+
+type GoogleImageResult {
+    bib_key: String
+    info_url: String
+    preview_url: String
+    thumbnail_url: String
+    preview: String
+    embeddable: Boolean
+    can_download_pdf: Boolean
+    can_download_epub: Boolean
+    is_pdf_drm_enabled: Boolean
+    is_epub_drm_enabled: Boolean
+}

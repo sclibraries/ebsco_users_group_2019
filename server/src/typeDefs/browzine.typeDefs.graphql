@@ -1,0 +1,64 @@
+type Query {
+    doi(doi: String!):DOIResults
+    journalLocator(issn: String!):Journal
+}    
+
+type DOIResults{
+    data: DOIData
+    included: [JournalData]
+}
+
+type DOIData {
+    id: Int
+    type: String
+    title: String
+    data: String
+    authors: String
+    inPress: Boolean
+    fullTextFile: String
+    availableThroughBrowzine: Boolean
+    startPage: String
+    endPage: String
+    browzineWebLink: String
+}
+
+type Journal {
+    data: [JournalData]
+    included: [JournalIncluded]
+}
+
+type JournalData {
+    id: Int
+    type: String
+    issn: String
+    sjrValue: Float
+    coverImageUrl: String
+    browzineEnabled: Boolean
+    externalLink: String
+    browzineWebLink: String
+    relationships: Relationship
+}
+
+type JournalIncluded {
+    id: Int
+    name: String
+    type: String
+    browzineWebLink: String
+    bookcaseName: String
+    bookcaseBrowzineWebLink: String
+    subjectName: String
+    subjectBrowzineWebLink: String
+}
+
+type Relationship {
+    bookshelf: BookShelf
+}
+
+type BookShelf {
+    data: [BookShelfData]
+}
+
+type BookShelfData{
+    type: String
+    id: Int
+}

@@ -1,0 +1,111 @@
+type Query {
+    tmdbSearch(query: String! year: String): TMDBData
+}
+
+
+type TMDBData {
+    page: Int
+    total_results: Int
+    total_pages: Int
+    results: [TMDBResults]
+}
+
+type TMDBResults {
+    vote_average: Int,
+    vote_count: Int,
+    id: Int,
+    video: Boolean,
+    media_type: String,
+    title: String,
+    popularity: Int,
+    poster_path: String,
+    original_language: String,
+    original_title: String,
+    backdrop_path: String,
+    adult: Boolean,
+    overview: String
+    release_date: String,
+    fullrecord: FullRecord
+    fullrecordcast: CastInfo
+}
+
+type FullRecord {
+	adult: String
+	backdrop_path: String
+	belongs_to_collection: String
+	budget: Int
+	genres: [TMDBGenres]
+	homepage: String
+	id: Int
+	imdb_id: String
+	original_language: String
+	original_title: String
+	overview: String
+	popularity: Float
+	poster_path: String
+	production_companies: [ProductionCompanies]
+	release_date: String
+	revenue: Int
+	runtime: Int
+	status: String
+	tagline: String
+	title: String
+	video: String
+	vote_average: Float
+	vote_count: Int
+	created_by: [CreatedBy]
+	episode_run_time: [Int]
+	first_air_date: String
+	tvGenres: [TMDBGenres]
+	name: String
+	
+	
+}
+
+type TMDBGenres {
+	id: Int
+	name: String
+}
+
+type ProductionCompanies {
+	id: Int
+	logo_path: String
+	name: String
+	origin_country: String
+}
+
+type CreatedBy {
+	id: Int
+	credit_id: String
+	name: String
+	gender: Int
+	profile_path: String
+}
+
+type CastInfo {
+	id: Int
+	cast: [CastData]
+	crew: [CrewData]
+}
+
+type CastData {
+	cast_id: Int
+	character: String
+	credit_id: String
+	name: String
+	gender: Int
+	id: Int
+	order: Int
+	profile_path: String
+}
+
+type CrewData {
+	credit_id: String
+	department: String
+	gender: Int
+	id: Int
+	job: String
+	name: String
+	profile_path: String
+}
+

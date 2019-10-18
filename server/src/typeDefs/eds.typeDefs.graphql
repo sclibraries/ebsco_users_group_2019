@@ -1,0 +1,618 @@
+type Query {
+	search(
+        query: String!, 
+        action: String, 
+        refine: String, 
+        sort: String, 
+        includefacets: String, 
+        searchmode: String, 
+        autosuggest: String, 
+        autocorrect: String, 
+        view: String, 
+        resultsperpage: Int, 
+        pagenumber: Int, 
+        hightlight: String, 
+        includeimagequickview: String, 
+        expander: String 
+        fieldcode: String
+        limiter: String
+        ): Results
+    record(an: String!, dbid: String!): Retrieve
+    citation(an: String!, dbid: String! styles: String!): Citation
+    autocomplete(query: String!): AutoComplete
+    info: Info
+}
+
+
+type FacetType {
+    sourceType: Facets
+    subject: Facets
+    publisher: Facets
+    journal: Facets
+    language: Facets
+    provider: Facets,
+    location: Facets,
+    category: Facets,
+    year: Facets
+}
+
+type Facets {
+    id: String
+    label: String
+    values: [AvailableFacets]
+}
+
+type AvailableFacets {
+    value: String
+    count: Int
+    action: String
+    label: String
+}
+
+type Results {
+    queryString: String
+    queryWithAction: [QueryWithAction]
+    facetFiltersWithAction: [FacetFilterWithAction]
+    limtersWithAction: [LimitersWithAction]
+    expandersWithAction: [ExpandersWithAction]
+    publicationWithAction: [PublicationWithAction]
+    statistics: Statistics
+    databases: [Databases]
+    recordFormat: String
+    records: [Records]
+    autoSuggestedTerms: [String]
+    facets: FacetType
+}    
+
+type Statistics {
+    hits: Int 
+    time: Int
+}
+
+type Databases {
+    Id: String
+    Label: String
+    Status: Int
+    Hits: Int
+}
+
+type QueryWithAction {
+    Query: QueryWithActionQuery
+    RemoveAction: String
+}
+
+type QueryWithActionQuery {
+    BooleanOperator: String
+    FieldCode: String
+    Term: String
+}
+
+type FacetFilterWithAction {
+    FilterId: Int
+    FacetValuesWithAction: [FacetValuesWithAction]
+    RemoveAction: String
+}
+
+type FacetValuesWithAction {
+    FacetValue: FacetValue
+    RemoveAction: String
+}
+
+type FacetValue {
+    Id: String
+    Value: String
+}
+
+type LimitersWithAction {
+    Id: String
+    LimiterValuesWithAction: [LimiterValuesWithAction]
+    RemoveAction: String
+}
+
+type LimiterValuesWithAction {
+    Value: String
+    RemoveAction: String
+}
+
+type ExpandersWithAction {
+    Id: String
+    RemoveAction: String
+}
+
+type PublicationWithAction {
+    Id: String
+    RemoveAction: String
+}
+
+type RetrieveValue {
+    id: Int
+}
+
+type Records {
+    id: Int
+    dbid: String
+    dbLabel: String
+    an: String
+    relevancyScore: Int
+    accessLevel: String
+    pubType: String
+    image: [Images]
+    customLinks: [CustomLinks]
+    pubTypeId: String
+    pLink: String
+    pdf: Boolean
+    otherFullText: Boolean
+    customLinkAvailable: Boolean
+    fullText: FullText
+    titleItem: [String]
+    titleFull: [String]
+    titleSourceItem: [String]
+    pubTypeItem: [String]
+    pubInfoItem: [String]
+    subjectItem: [SubjectItem]
+    subjectPersonItem: [String]
+    datePublicationItem: [String]
+    abstractItem: [String]
+    authorItem: [AuthorItem]
+    idItem: [String]
+    imageItem: String
+    urlItem: [String]
+    issnItem: [String]
+    oclcItem: [String]
+    volume: [String]
+    issue: [String]
+    year: [String]
+    month: [String]
+    day: [String]
+    startPage: String
+    noteTitleSourceItem: [String]
+    titleFullRelationship: [String]
+    pagesItem:[String]
+    formatItem: [String]
+    subjectProductItem: [String]
+    abstractSuppliedCopyrightItem: [String]
+    items: [Items]
+    accessInformation: AccessInfo
+    classification: [Classification]
+    dates: [Dates]
+    datesYear: [String]
+    datesMonth: [String]
+    datesDay: [String]
+    identifiers: [Identifiers]
+    doiItem: [String]
+    language: [Languages]
+    numbering: [Numbering]
+    physicalDescription: PhysicalDescription
+    subjects: [Subjects]
+    titles: [Titles]
+    type: String
+    itemTypes: [ItemTypes]
+    contentDescription: [ContentDescription]
+    bibEntityId: String
+    hasContributorRelationship: [HasContributorRelationship]
+    pubAgentRelationship: [PubAgentRelationship]
+    isPartOfRelationship: [IsPartOfRelationship]
+    hasPartRelationship: [IsPartOfRelationship]
+    fileInfo: [FileInfo]
+    personRecord: Entity
+    rightsInfo: RightsInfo
+    holdings: [Holdings]
+    imageQuickViewItems: [ImageQuickViewItems]
+    illustrationInfo: [IllustrationInfo]
+    isbn: [String]
+    retrieve: Retrieve
+    googleImages: GoogleImageResult
+    doi: DOIData
+    sfx: [SFXResults]
+    bgg: EDSBggData
+    tmdbSearch: EDSTMDBData
+}
+
+type AuthorItem {
+    author: [String]
+    term: [String]
+    fieldCode: [String]
+}
+
+type SubjectItem {
+    subject: [String]
+    term: [String]
+    fieldCode: [String]
+}
+
+type Retrieve{
+    records: Records
+}
+
+type Items {
+    name: String
+    label: String
+    group: String
+    data: [String]
+}
+
+type CustomLinks {
+    Url: String
+    Name: String
+    Category: String
+    Text: String
+    Icon: String
+    MouseOverText: String
+}
+
+type Images {
+    Size: String
+    Target: String
+}
+
+type FullText {
+    Links: [FullTextLinks]
+    Text: FullTextText
+    CustomLinks: [FullTextCustomLinks]
+}
+
+type FullTextLinks {
+    Type: String
+    Url: String
+}
+
+type FullTextText {
+    Availability: String
+    Value: String
+}
+
+type FullTextCustomLinks {
+    Url: String
+    Name: String
+    Category: String
+    Text: String
+    Icon: String
+    MouseOverText: String
+}
+
+type AccessInfo {
+    Permissions: PermissionsInfo
+}
+
+type PermissionsInfo {
+    Flag: String
+    Type: String
+}
+
+type Classification {
+    Code: String
+    Scheme: String
+    Type: String
+}
+
+type Dates {
+    D: String
+    M: String
+    Text: String
+    Type: String
+    Y: String
+}
+
+type Identifiers {
+    Type: String
+    Value: String
+    Scope: String
+}
+
+type Languages {
+    Code: String
+    Text: String
+}
+
+type Numbering {
+    Type: String
+    Value: String
+}
+
+type PhysicalDescription {
+    Pagination: Pagination
+}
+
+type Pagination {
+    PageCount: String
+    StartPage: String
+}
+
+type Subjects {
+   Authority: String
+   SubjectFull: String
+   Type: String
+}
+
+type Titles {
+   TitleFull: String
+   Type: String
+}
+
+type ItemTypes {
+    Type: String
+    Text: String
+}
+
+type ContentDescription {
+    Type: String
+    Text: String
+}
+
+type HasContributorRelationship {
+    PersonEntity: Entity
+    OrganizationEntity: Entity
+}
+
+type Entity {
+    Name: NameFull
+}
+
+type NameFull {
+    NameFull: String
+}
+
+type PubAgentRelationship {
+    OraganizationEntity: Entity
+    Roles: [String]
+    OrganizationEntity: Entity
+}
+
+type IsPartOfRelationship {
+    BibEntity: IsPartOfRelationshipBibEntity
+}
+
+type IsPartOfRelationshipBibEntity {
+    Classification: [Classification]
+    Dates: [Dates]
+    Identifiers: [Identifiers]
+    Languages: [Languages]
+    Numbering: [Numbering]
+    PhysicalDescription: [PhysicalDescription]
+    Subjects: [Subjects]
+    Titles: [Titles]
+    Type: String
+    ItemTypes: [ItemTypes]
+    ContentDescription: [ContentDescription]
+    Id: String
+}
+
+type FileInfo {
+    File: File
+    FileList: File
+    FilePosLinks: FilePosLinks
+    FilePosLinkRefLists: FilePosLinkRefLists
+}
+
+type File {
+    IsDownloadable: String
+    Id: String
+    FileName: String
+    FileLocation: FileLocation
+    ImgCategory: String
+}
+
+type FileLocation {
+    Type: String
+    LocationTemplateId: String
+    Path: String
+}
+
+type FilePosLinks {
+    Id: String
+    FragId: String
+    FileId: String
+    Labels: [FilePostLinksLabels]
+}
+
+type FilePostLinksLabels {
+    Type: String
+    Text: String
+}
+
+type FilePosLinkRefLists {
+    Use: String
+    FilePosLinkRefs: [FilePosLinkRefs]
+}
+
+type FilePosLinkRefs {
+    FilePosLinkId: String
+}
+
+type RightsInfo {
+    RightsStatements: [RightsStatements]
+}
+
+type RightsStatements {
+    Type: String
+    Text: String
+}
+
+type Holdings {
+    HoldingSimple: HoldingSimple
+}
+
+type HoldingSimple {
+    CopyInformationList: [CopyInformationList]
+}
+
+type CopyInformationList {
+    Sublocation: String
+    ShelfLocator: String
+}
+
+type ImageQuickViewItems {
+    DbId: String
+    An: String
+    Type: String
+    Url: String
+}
+
+type IllustrationInfo {
+    Images: [IllustrationImages]
+}
+
+type IllustrationImages {
+    Size: String
+    Target: String
+}
+
+type Session {
+	AuthToken: String!
+	AuthTimeout: Int!
+	SessionToken: String!
+}
+
+type Info {
+    AvailableSearchCriteria: AvailableSearchCriteria
+    ViewResultSettings: ViewResultSettings
+    ApplicationSettings: ApplicationSettings
+}
+
+type AvailableSearchCriteria {
+    AvailableSorts: [AvailableSorts]
+    AvailableSearchFields: [AvailableSearchFields]
+    AvailableExpanders: [AvailableExpanders]
+    AvailableLimiters: [AvailableLimiters]
+    AvailableSearchModes: [AvailableSearchModes]
+    AvailableRelatedContent: [AvailableRelatedContent]
+    AvailableDidYouMeanOptions: [AvailableDidYouMeanOptions]
+}
+
+type AvailableSorts {
+   Id: String
+   Label: String
+   AddAction: String
+}
+
+type AvailableSearchFields {
+    FieldCode: String
+    Label: String
+}
+
+type AvailableExpanders {
+    Id: String
+    Label: String
+    AddAction: String
+    DefaultOn: String
+}
+
+type AvailableLimiters {
+    Id: String
+    Label: String
+    Type: String
+    AddAction: String
+    DefaultOn: String
+    Order: Int
+}
+
+type AvailableSearchModes {
+    Mode: String
+    Label: String
+    DefaultOn: String
+    AddAction: String
+}
+
+type AvailableRelatedContent {
+    Type: String
+    Label: String
+    DefaultOn: String
+    AddAction: String
+}
+
+type AvailableDidYouMeanOptions {
+    Id: String
+    Label: String
+    DefaultOn: String
+}
+
+type ViewResultSettings {
+    ResultsPerPage: Int
+    ResultListView: String
+    IncludeImageQuickView: IncludeImageQuickView
+}
+
+type IncludeImageQuickView {
+    Id: String
+    Label: String
+    DefaultOn: String
+}
+
+type ApplicationSettings {
+    SessionTimeout: Int
+}
+
+type Citation {
+   Citations: [CitationResults]
+}
+
+type CitationResults {
+    Id: String
+    Label: String
+    SectionLabel: String
+    Data: String
+    Indent: Int
+}
+
+type AutoComplete {
+    type: String
+    processingTime: Int
+    terms: [AutoCompleteTerms]
+}
+
+type AutoCompleteTerms {
+    term: String
+    fragments: [AutoCompleteFragments]
+    score: Int
+    domain: String
+}
+
+type AutoCompleteFragments {
+    text: String
+    user: Boolean
+}
+
+type EDSBggData {
+    id: String 
+    name: String
+    year: [String]
+    game: EDSGameData
+}
+
+type EDSGameData {
+    yearpublished: [String]
+    minplayers: [String]
+    maxplayers: [String]
+    playingtime: [String]
+    minplaytime: [String]
+    maxplaytime: [String]
+    age: [String]
+    name: [String]
+    description: [String]
+    thumbnail: [String]
+    image: [String]
+}
+
+type EDSTMDBData {
+    page: Int
+    total_results: Int
+    total_pages: Int
+    results: [TMDBResults]
+}
+
+type EDSTMDBResults {
+    vote_average: Int,
+    vote_count: Int,
+    id: Int,
+    video: Boolean,
+    media_type: String,
+    title: String,
+    popularity: Int,
+    poster_path: String,
+    original_language: String,
+    original_title: String,
+    backdrop_path: String,
+    adult: Boolean,
+    overview: String
+    release_date: String
+}

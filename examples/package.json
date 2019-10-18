@@ -1,0 +1,56 @@
+{
+  "name": "examples",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@apollo/react-hooks": "^3.1.2",
+    "apollo-boost": "^0.4.4",
+    "apollo-cache-inmemory": "^1.3.5",
+    "apollo-client": "^2.4.2",
+    "apollo-link-http": "^1.5.5",
+    "bootstrap": "^4.1.3",
+    "chart.js": "^2.8.0",
+    "graphql": "^14.5.8",
+    "lodash": "^4.17.15",
+    "query-string": "^6.8.3",
+    "react": "^16.10.2",
+    "react-apollo": "^3.1.2",
+    "react-bottom-scroll-listener": "^3.0.0",
+    "react-chartjs-2": "^2.8.0",
+    "react-dom": "^16.10.2",
+    "react-loading-skeleton": "^1.2.0",
+    "react-masonry-css": "^1.0.12",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.2.0",
+    "react-select": "^3.0.8",
+    "reactstrap": "^6.5.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "eslint": "6.5.1",
+    "eslint-config-prettier": "6.4.0",
+    "eslint-plugin-prettier": "3.1.1",
+    "eslint-plugin-react-hooks": "^2.1.2",
+    "prettier": "1.18.2"
+  }
+}

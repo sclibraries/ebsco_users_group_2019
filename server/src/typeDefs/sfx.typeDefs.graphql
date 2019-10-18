@@ -1,0 +1,11 @@
+type Query {
+    sfx(genre: String, isbn: String, issn: String, title: String, volume: String, issue: String, atitle: String, aulast: String, spage: String): [SFXResults]
+}
+
+type SFXResults {
+    name: String
+    public_name: String
+    id: String
+    interface_name: String
+    url: String
+}
